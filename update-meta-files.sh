@@ -28,7 +28,7 @@ WTD_DOC_FILES=( "COMMIT_TEMPLATE.md" "CONTRIBUTING.md" "ISSUE_TEMPLATE.md" "PULL
 
 # FIXME: Repo for meta files?
 WTD_META_PATH="https://raw.githubusercontent.com/while-true-do/ansible-galaxy-skeleton/master/"
-WTD_META_FILES=( ".editorconfig" ".gitignore" )
+WTD_META_FILES=( ".editorconfig" ".gitignore" "LICENSE" )
 
 # FIXME: Repo for test suite needed?
 WTD_TEST_PATH="https://raw.githubusercontent.com/while-true-do/ansible-galaxy-skeleton/master/tests/"
