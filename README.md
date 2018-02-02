@@ -135,6 +135,9 @@ ansible-galaxy init --role-skeleton=/path/to/ansible-galaxy-skeleton <role-name>
 
 Unfortunately there seems to be a bug in ansible-galaxy. It causes, that some files are not properly ignored/overwritten. As a workaround you have to do the following after updating the skeleton via `git pull` or `git clone`:
 
+- https://github.com/ansible/galaxy/issues/316
+- https://github.com/ansible/galaxy/issues/315
+
 ```
 # Remove the original README.md (basically the file you are reading)
 rm -rf README.md
