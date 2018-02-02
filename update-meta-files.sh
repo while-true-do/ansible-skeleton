@@ -80,12 +80,12 @@ function update_self {
   curl "https://raw.githubusercontent.com/while-true-do/ansible-galaxy-skeleton/master/update-meta-files.sh" > "$WTD_SCRIPT_PATH/update-meta-files-new.sh"
   rm -rf "$WTD_SCRIPT_PATH/update-meta-files.sh"
   mv "$WTD_SCRIPT_PATH/update-meta-files-new.sh" "$WTD_SCRIPT_PATH/update-meta-files.sh"
-  chmod +x "$WTD_SCRIPT_PATH/update-meta-files-new.sh"
 }
 
 function update_all {
   update_docs
   update_tests
+  update_metas
   update_self
 }
 
@@ -96,7 +96,7 @@ while getopts 'admst' opts; do
     d) update_docs ;;
     m) update_metas ;;
     t) update_tests ;;
-    s) update_selfs ;;
+    s) update_self ;;
     \?) usage ;;
     *) usage ;;
   esac
