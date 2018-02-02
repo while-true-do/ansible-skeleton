@@ -48,7 +48,7 @@ if [ $WTD_ERR ]; then
 else
   printf "
   **************************************** \n\
-  ***        Tests succesfull          *** \n\
+  ***        Tests succesful           *** \n\
   **************************************** \n\
   "
   exit 0

@@ -21,6 +21,7 @@ You need the following tools on your system:
 - ansible-lint
 - ansible-review
 - aspell
+- aspell-en
 - bash
 
 ## Dependencies

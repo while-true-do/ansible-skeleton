@@ -34,7 +34,7 @@ if [ $BADWORDS_COUNT -gt 0 ]; then
 else
   printf "$WTD_COLOR_GREEN
   **************************************** \n\
-  ***     Spellchecking successfull    *** \n
+  ***     Spellchecking successful     *** \n
   **************************************** \n\
   $WTD_COLOR_OFF"
   exit 0;
