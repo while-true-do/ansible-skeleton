@@ -7,42 +7,11 @@
 
 ## Motivation
 
-Creating a repo is always somewhat intersting and needs a lot explanation. This repository should help to reduce the effort and prepare a ready-to-use environment.
+Creating a repository is always somewhat interesting and needs a lot explanation. This repository should help to reduce the effort and prepare a ready-to-use environment.
 
-With the installation of [ansible](https://www.ansible.com/) you will get a very useful command `ansible-galaxy`. This command is capable of creating a directory with a lot of cool stuff in it. 
+With the installation of [Ansible](https://www.ansible.com/) you will get a very useful command `ansible-galaxy`. This command is capable of creating a directory with a lot of cool stuff in it. 
 
 The [ansible-galaxy-skeleton](https://github.com/while-true-do/ansible-galaxy-skeleton/) will extend this behaviour by providing a custom skeleton for [while-true-do.org](https://while-true-do.org).
-
-## Installation
-
-Install from [Github](https://github.com/while-true-do/ansible-galaxy-skeleton/)
-
-```
-git clone https://github.com/while-true-do/ansible-galaxy-skeleton.git
-
-```
-
-Some preparation is needed
-
-```
-cd ansible-galaxy-skeleton
-rm README.md
-./update-meta-files.sh -d
-```
-
-Now the skeleton is prepared and can be used. 
-
-## Update
-
-Updating the skeleton itself is as easy as
-
-```
-cd ansible-galaxy-skeleton
-git fetch
-git pull
-```
-
-This should be done from time to time.
 
 ## Requirements
 
@@ -52,6 +21,7 @@ You need the following tools on your system:
 - ansible-lint
 - ansible-review
 - aspell
+- aspell-en
 - bash
 
 ## Dependencies
@@ -61,7 +31,7 @@ The `update-meta-files.sh` depends on the reachability of other repositories.
 -   <https://github.com/while-true-do/community>
 -   <https://github.com/while-true-do/ansible-galaxy-skeleton>
 
-## Layout / Structur
+## Layout / Structure
 
 The directory / file layout will be:
 
@@ -100,48 +70,111 @@ vars/
   main.yml                # Even more vars can be specified here. These will overwrite defaults
 ```
 
-## Example / Usage
+## Installation
+
+Install from [Github](https://github.com/while-true-do/ansible-galaxy-skeleton/)
+
+```
+git clone https://github.com/while-true-do/ansible-galaxy-skeleton.git
+
+```
+
+BUG: Due to a bug in ansible-galaxy (please see below) you have to do the following after cloning/pulling:
+
+```
+rm -rf README.md
+```
+
+## Update
+
+Updating the skeleton itself is as easy as
+
+```
+cd ansible-galaxy-skeleton
+git fetch
+git pull
+```
+
+This should be done from time to time.
+
+## Usage
+
+Here you will see how this whole thingy should be used.
+
+### Using the skeleton
 
 There are multiple ways described [here](http://docs.ansible.com/ansible/latest/galaxy.html#using-a-custom-role-skeleton).
 
-One way will be:
-
 ```
-ansible-galaxy init --role-skeleton=/path/to/skeleton role-name
-```
-
-So, if you want to create the repo "ansible-role-cool-stuff", which is similar to while-true-do.cool-stuff, you can do:
-
-```
-ansible-galaxy init --role-skeleton=/path/to/skeleton role-name
+# Edit global ansible.cfg
+sudo vi /etc/ansible/ansible.cfg
+# Edit local ansible
+vi ~/.ansible.cfg
+# Edit the current directory
+vi ansible.cfg (in the current directory)
 ```
 
-This will create a directory with a lot of useful content.
+You have to add/edit the content.
 
-In this directory you will fond a script `update-meta-files.sh`.
-This script should be used to keep meta files up to date in your role.
-It pulls in new tests, new docs, new meta files.
+```
+[...]
+
+[galaxy]
+role_skeleton = /path/to/skeleton
+role_skeleton_ignore = ^.git$,^.git_keep$,^README.md$
+
+[...]
+```
+
+Alternatively you can use it directly. But ignoring of unwanted files does not work.
+
+```
+ansible-galaxy init --role-skeleton=/path/to/ansible-galaxy-skeleton <role-name>
+```
+
+### Bug included
+
+Unfortunately there seems to be a bug in ansible-galaxy. It causes, that some files are not properly ignored/overwritten. As a workaround you have to do the following after updating the skeleton via `git pull` or `git clone`:
+
+- https://github.com/ansible/galaxy/issues/316
+- https://github.com/ansible/galaxy/issues/315
+
+```
+# Remove the original README.md (basically the file you are reading)
+rm -rf README.md
+```
+
+After each `ansible-galaxy init <role-name>`, you have to cleanup/reinitialize the new directory:
+
+```
+rm -rf .git
+git init
+```
+
+### Using the script
+
+There is a script included, which should be used to keep meta-files up-to-date.
 
 ```
 # Getting help
-./update-meta-files.sh -h
+bash ./update-meta-files.sh -h
 
 # Update the update script
-./update-meta-files.sh -s
+bash ./update-meta-files.sh -s
 
 # Update all meta files.
-./update-meta-files.sh -a
+bash ./update-meta-files.sh -a
 ```
 
-## Testing new roles
+### Using the tests
 
 All tests are located in [test directory](./tests/).
 
 Basic testing:
 
 ```
-./tests/test-spelling.sh
-./tests/test-ansible.sh
+bash ./tests/test-spelling.sh
+bash ./tests/test-ansible.sh
 ```
 
 You should also consider to use `ansible-review` from time to time.
