@@ -4,13 +4,17 @@
 
 # Variables
 WTD_SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+WTD_COLOR_BLUE='\e[1;34m'
+WTD_COLOR_GREEN='\e[1;32m'
+WTD_COLOR_RED='\e[1;31m'
+WTD_COLOR_OFF='\e[0m'
 
 # Script
-printf "
+printf "$WTD_COLOR_BLUE
 **************************************** \n\
 ***        Ansible Testing           *** \n\
 **************************************** \n\
-"
+$WTD_COLOR_OFF"
 
 printf "*** Step 1: Create valid ansible.cfg *** \n"
 printf '[defaults]\nroles_path=../' > "$WTD_SCRIPT_DIR/../ansible.cfg"
@@ -22,7 +26,7 @@ if [ -f $WTD_SCRIPT_DIR/../requirements.yml ]; then
 fi
 printf "**************************************** \n"
 
-printf "*** Step 3: Syntax Check             ***"
+printf "*** Step 3: Syntax Check             *** \n"
 ansible-playbook "$WTD_SCRIPT_DIR/test.yml" -i "$WTD_SCRIPT_DIR/inventory" -vv --syntax-check || WTD_ERR=true
 printf "**************************************** \n"
 
@@ -35,11 +39,11 @@ rm -v "$WTD_SCRIPT_DIR/../ansible.cfg"
 printf "**************************************** \n"
 
 if [ $WTD_ERR ]; then
-  printf "
+  printf "$WTD_COLOR_RED
   **************************************** \n\
   ***   Error occured - Tests failed   *** \n\
   **************************************** \n\
-  "
+  $WTD_COLOR_OFF"
   exit 1
 else
   printf "

@@ -4,13 +4,17 @@
 
 # Variables
 WTD_SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+WTD_COLOR_BLUE='\e[1;34m'
+WTD_COLOR_GREEN='\e[1;32m'
+WTD_COLOR_RED='\e[1;31m'
+WTD_COLOR_OFF='\e[0m'
 
 # Script
-printf "
+printf "$WTD_COLOR_BLUE
 **************************************** \n\
 ***        Spell Checking            *** \n\
 **************************************** \n\
-"
+$WTD_COLOR_OFF"
 
 BADWORDS=$(sed '/^```/,/^```/d' "$WTD_SCRIPT_DIR/../README.md" | aspell --lang=en --encoding=utf-8\
        	--personal=./tests/.aspell.en.pws list)
@@ -18,20 +22,20 @@ BADWORDS=$(sed '/^```/,/^```/d' "$WTD_SCRIPT_DIR/../README.md" | aspell --lang=e
 BADWORDS_COUNT=$(echo $BADWORDS | wc -w)
 
 if [ $BADWORDS_COUNT -gt 0 ]; then
-  printf "
+  printf "$WTD_COLOR_RED
   Error occured - Found $BADWORDS_COUNT bad word(s) \n\
   \n\
   Bad Words: \n\
   $BADWORDS \n\
   \n\
   **************************************** \n\
-  "
+  $WTD_COLOR_OFF"
   exit 1;
 else
-  printf "
+  printf "$WTD_COLOR_GREEN
   **************************************** \n\
   ***     Spellchecking successfull    *** \n
   **************************************** \n\
-  "
+  $WTD_COLOR_OFF"
   exit 0;
 fi
