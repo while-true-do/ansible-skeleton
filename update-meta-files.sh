@@ -57,7 +57,7 @@ function update_tests {
     mkdir -p "$WTD_SCRIPT_DIR/tests"
   fi
 
-  for i in "${WTD_TEST_PATH[@]}"; do
+  for i in "${WTD_TEST_FILES[@]}"; do
     echo "Downloading $i"
     curl "$WTD_TEST_PATH/$i" > "$WTD_SCRIPT_DIR/tests/$i"
   done
@@ -67,7 +67,7 @@ function update_metas {
   echo "Updating Meta Files"
   echo "----------------------"
 
-  for i in "${WTD_META_PATH[@]}"; do
+  for i in "${WTD_META_FILES[@]}"; do
     echo "Downloading $i"
     curl "$WTD_META_PATH/$i" > "$WTD_SCRIPT_DIR/$i"
   done
@@ -77,9 +77,9 @@ function update_self {
   echo "Updating Script"
   echo "----------------------"
 
-  curl "https://raw.githubusercontent.com/while-true-do/ansible-galaxy-skeleton/master/update-meta-files.sh" > "$WTD_SCRIPT_PATH/update-meta-files-new.sh"
-  rm -rf "$WTD_SCRIPT_PATH/update-meta-files.sh"
-  mv "$WTD_SCRIPT_PATH/update-meta-files-new.sh" "$WTD_SCRIPT_PATH/update-meta-files.sh"
+  curl "https://raw.githubusercontent.com/while-true-do/ansible-galaxy-skeleton/master/update-meta-files.sh" > "$WTD_SCRIPT_DIR/update-meta-files-new.sh"
+  rm -rf "$WTD_SCRIPT_DIR/update-meta-files.sh"
+  mv "$WTD_SCRIPT_DIR/update-meta-files-new.sh" "$WTD_SCRIPT_DIR/update-meta-files.sh"
 }
 
 function update_all {
