@@ -37,7 +37,7 @@ WTD_TEST_FILES=( ".aspell.en.pws" "test-ansible.sh" "test-spelling.sh" )
 # Functions
 
 function update_docs {
-  echo "Downloading Doc Files"
+  echo "Updating Doc Files"
   echo "----------------------"
   if [ ! -d "$WTD_SCRIPT_DIR/docs" ]; then
     mkdir -p "$WTD_SCRIPT_DIR/docs"
@@ -50,7 +50,7 @@ function update_docs {
 }
 
 function update_tests {
-  echo "Downloading Test Files"
+  echo "Updating Test Files"
   echo "----------------------"
 
   if [ ! -d "$WTD_SCRIPT_DIR/tests" ]; then
@@ -64,17 +64,17 @@ function update_tests {
 }
 
 function update_metas {
-  echo "Downloading Meta Files"
+  echo "Updating Meta Files"
   echo "----------------------"
 
   for i in "${WTD_META_PATH[@]}"; do
     echo "Downloading $i"
-    curl "$WTD_TEST_PATH/$i" > "$WTD_SCRIPT_DIR/$i"
+    curl "$WTD_META_PATH/$i" > "$WTD_SCRIPT_DIR/$i"
   done
 }
 
 function update_self {
-  echo "Downloading Meta Files"
+  echo "Updating Script"
   echo "----------------------"
 
   curl "https://raw.githubusercontent.com/while-true-do/ansible-galaxy-skeleton/master/update-meta-files.sh" > "$WTD_SCRIPT_PATH/update-meta-files-new.sh"
