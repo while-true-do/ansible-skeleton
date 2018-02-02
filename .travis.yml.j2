@@ -29,7 +29,9 @@ install:
 
 # Run the tests
 script:
+  - chmod +x tests/test-ansible.sh
   - tests/test-ansible.sh
+  - chmod +x tests/test-spelling.sh
   - tests/test-spelling.sh
 
 notifications:
