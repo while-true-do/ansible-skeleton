@@ -7,9 +7,9 @@
 
 ## Motivation
 
-Creating a repo is always somewhat intersting and needs a lot explanation. This repository should help to reduce the effort and prepare a ready-to-use environment.
+Creating a repository is always somewhat interesting and needs a lot explanation. This repository should help to reduce the effort and prepare a ready-to-use environment.
 
-With the installation of [ansible](https://www.ansible.com/) you will get a very useful command `ansible-galaxy`. This command is capable of creating a directory with a lot of cool stuff in it. 
+With the installation of [Ansible](https://www.ansible.com/) you will get a very useful command `ansible-galaxy`. This command is capable of creating a directory with a lot of cool stuff in it. 
 
 The [ansible-galaxy-skeleton](https://github.com/while-true-do/ansible-galaxy-skeleton/) will extend this behaviour by providing a custom skeleton for [while-true-do.org](https://while-true-do.org).
 
@@ -61,7 +61,7 @@ The `update-meta-files.sh` depends on the reachability of other repositories.
 -   <https://github.com/while-true-do/community>
 -   <https://github.com/while-true-do/ansible-galaxy-skeleton>
 
-## Layout / Structur
+## Layout / Structure
 
 The directory / file layout will be:
 
@@ -110,7 +110,7 @@ One way will be:
 ansible-galaxy init --role-skeleton=/path/to/skeleton role-name
 ```
 
-So, if you want to create the repo "ansible-role-cool-stuff", which is similar to while-true-do.cool-stuff, you can do:
+So, if you want to create the repository "ansible-role-cool-stuff", which is similar to while-true-do.cool-stuff, you can do:
 
 ```
 ansible-galaxy init --role-skeleton=/path/to/skeleton role-name
