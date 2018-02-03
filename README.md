@@ -23,6 +23,7 @@ You need the following tools on your system:
 - aspell
 - aspell-en
 - bash
+- git
 
 ## Dependencies
 
@@ -31,9 +32,67 @@ The `update-meta-files.sh` depends on the reachability of other repositories.
 -   <https://github.com/while-true-do/community>
 -   <https://github.com/while-true-do/ansible-galaxy-skeleton>
 
-## Layout / Structure
+## Installation
 
-The directory / file layout will be:
+Install from [Github](https://github.com/while-true-do/ansible-galaxy-skeleton/)
+
+```
+git clone https://github.com/while-true-do/ansible-galaxy-skeleton.git
+
+```
+
+## Update
+
+Updating the skeleton itself is as easy as
+
+```
+cd ansible-galaxy-skeleton
+git fetch
+git pull
+```
+
+This should be done from time to time.
+
+## Usage
+
+Here you will see how this whole thingy should be used.
+
+### Using the skeleton
+
+There are multiple ways described [here](http://docs.ansible.com/ansible/latest/galaxy.html#using-a-custom-role-skeleton).
+
+```
+# Edit global ansible.cfg
+sudo vi /etc/ansible/ansible.cfg
+
+# Edit local ansible
+vi ~/.ansible.cfg
+
+# Edit the current directory
+vi ansible.cfg (in the current directory)
+```
+
+You have to add/edit the content.
+
+```
+[...]
+
+[galaxy]
+role_skeleton = /path/to/skeleton/dist
+role_skeleton_ignore = ^.git$,^.git_keep$,^README.md$
+
+[...]
+```
+
+Alternatively you can use it directly. But ignoring of unwanted files does not work.
+
+```
+ansible-galaxy init --role-skeleton=/path/to/ansible-galaxy-skeleton/dist/ <role-name>
+```
+
+### Layout / Structure
+
+The directory / file layout of the new directory will be:
 
 ```
 README.md                 # Tune it to your needs
@@ -65,90 +124,10 @@ tasks/
 templates/
   foo.j2                  # Often Templates are needed for config files.
 tests/
-  test01                  # Tests can be found here.
+  test-ansible.sh         # A script to test your new role.
+  test-spelling.sh        # A script to test the spelling of markdown files.
 vars/
   main.yml                # Even more vars can be specified here. These will overwrite defaults
-```
-
-## Installation
-
-Install from [Github](https://github.com/while-true-do/ansible-galaxy-skeleton/)
-
-```
-git clone https://github.com/while-true-do/ansible-galaxy-skeleton.git
-
-```
-
-BUG: Due to a bug in ansible-galaxy (please see below) you have to do the following after cloning/pulling:
-
-```
-rm -rf README.md
-```
-
-## Update
-
-Updating the skeleton itself is as easy as
-
-```
-cd ansible-galaxy-skeleton
-git fetch
-git pull
-```
-
-This should be done from time to time.
-
-## Usage
-
-Here you will see how this whole thingy should be used.
-
-### Using the skeleton
-
-There are multiple ways described [here](http://docs.ansible.com/ansible/latest/galaxy.html#using-a-custom-role-skeleton).
-
-```
-# Edit global ansible.cfg
-sudo vi /etc/ansible/ansible.cfg
-# Edit local ansible
-vi ~/.ansible.cfg
-# Edit the current directory
-vi ansible.cfg (in the current directory)
-```
-
-You have to add/edit the content.
-
-```
-[...]
-
-[galaxy]
-role_skeleton = /path/to/skeleton
-role_skeleton_ignore = ^.git$,^.git_keep$,^README.md$
-
-[...]
-```
-
-Alternatively you can use it directly. But ignoring of unwanted files does not work.
-
-```
-ansible-galaxy init --role-skeleton=/path/to/ansible-galaxy-skeleton <role-name>
-```
-
-### Bug included
-
-Unfortunately there seems to be a bug in ansible-galaxy. It causes, that some files are not properly ignored/overwritten. As a workaround you have to do the following after updating the skeleton via `git pull` or `git clone`:
-
-- https://github.com/ansible/galaxy/issues/316
-- https://github.com/ansible/galaxy/issues/315
-
-```
-# Remove the original README.md (basically the file you are reading)
-rm -rf README.md
-```
-
-After each `ansible-galaxy init <role-name>`, you have to cleanup/reinitialize the new directory:
-
-```
-rm -rf .git
-git init
 ```
 
 ### Using the script
@@ -178,6 +157,10 @@ bash ./tests/test-ansible.sh
 ```
 
 You should also consider to use `ansible-review` from time to time.
+
+### Git Hooks
+
+You can also automate your testing via Git Hooks. This must be done locally on your machine.
 
 ## Contribute / Bugs
 
