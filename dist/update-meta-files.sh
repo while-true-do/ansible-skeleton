@@ -27,7 +27,7 @@ WTD_DOC_PATH="https://raw.githubusercontent.com/while-true-do/community/master/d
 WTD_DOC_FILES=( "COMMIT_TEMPLATE.md" "CONTRIBUTING.md" "ISSUE_TEMPLATE.md" "PULL_REQUEST_TEMPLATE.md" "CODE_OF_CONDUCT.md")
 
 # FIXME: Repo for meta files?
-WTD_META_PATH="https://raw.githubusercontent.com/while-true-do/ansible-galaxy-skeleton/master/dist"
+WTD_META_PATH="https://raw.githubusercontent.com/while-true-do/ansible-galaxy-skeleton/master/dist/"
 WTD_META_FILES=( ".editorconfig" ".gitignore" "LICENSE" )
 
 # FIXME: Repo for test suite needed?
