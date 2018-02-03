@@ -1,0 +1,29 @@
+---
+language: python
+python: 
+  - "2.7"
+  - "3.6"
+
+sudo: false
+
+# Install python-pip
+addons:
+  apt:
+    packages:
+    - python-pip
+    - aspell
+    - aspell-en
+
+install:
+  # Install ansible
+  - pip install ansible
+  - pip install ansible-lint
+  - pip install ansible-review
+
+  # Check ansible version
+  - ansible --version
+
+# Run the tests
+script:
+  - chmod +x tests/test-spelling.sh
+  - tests/test-spelling.sh
