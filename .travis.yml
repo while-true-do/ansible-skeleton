@@ -23,9 +23,6 @@ install:
   # Check ansible version
   - ansible --version
 
-  # Link github repo to ansible-galaxy name
-  - ln -s  $PWD ../while-true-do.{{ role_name }}
-
 # Run the tests
 script:
   - chmod +x tests/test-spelling.sh
