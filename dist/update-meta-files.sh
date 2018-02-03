@@ -27,11 +27,11 @@ WTD_DOC_PATH="https://raw.githubusercontent.com/while-true-do/community/master/d
 WTD_DOC_FILES=( "COMMIT_TEMPLATE.md" "CONTRIBUTING.md" "ISSUE_TEMPLATE.md" "PULL_REQUEST_TEMPLATE.md" )
 
 # FIXME: Repo for meta files?
-WTD_META_PATH="https://raw.githubusercontent.com/while-true-do/ansible-galaxy-skeleton/master/"
+WTD_META_PATH="https://raw.githubusercontent.com/while-true-do/ansible-galaxy-skeleton/master/dist"
 WTD_META_FILES=( ".editorconfig" ".gitignore" "LICENSE" )
 
 # FIXME: Repo for test suite needed?
-WTD_TEST_PATH="https://raw.githubusercontent.com/while-true-do/ansible-galaxy-skeleton/master/tests/"
+WTD_TEST_PATH="https://raw.githubusercontent.com/while-true-do/ansible-galaxy-skeleton/master/dist/tests/"
 WTD_TEST_FILES=( ".aspell.en.pws" "test-ansible.sh" "test-spelling.sh" )
 
 # Functions
@@ -77,7 +77,7 @@ function update_self {
   echo "Updating Script"
   echo "----------------------"
 
-  curl "https://raw.githubusercontent.com/while-true-do/ansible-galaxy-skeleton/master/update-meta-files.sh" > "$WTD_SCRIPT_DIR/update-meta-files-new.sh"
+  curl "https://raw.githubusercontent.com/while-true-do/ansible-galaxy-skeleton/master/dist/update-meta-files.sh" > "$WTD_SCRIPT_DIR/update-meta-files-new.sh"
   rm -rf "$WTD_SCRIPT_DIR/update-meta-files.sh"
   mv "$WTD_SCRIPT_DIR/update-meta-files-new.sh" "$WTD_SCRIPT_DIR/update-meta-files.sh"
 }
