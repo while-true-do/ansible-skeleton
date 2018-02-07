@@ -105,6 +105,8 @@ LICENSE.md                # This file contains the license
 
 update-meta-files.sh      # The script to update meta files and docs and tests
 
+requirements.yml          # This file show all necessary dependencies
+
 docs/
   doc01                   # Here you can find documents like our CONTRIBUTING.md
   doc02                   # The documents are maintained in
