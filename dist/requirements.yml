@@ -1,0 +1,28 @@
+# from galaxy
+# - src: while-true-do.yum
+
+# from GitHub
+# - src: https://github.com/while-true-do/ansible-role-yum
+
+# from GitHub, overriding the name and specifying a specific tag
+# - src: https://github.com/while-true-do/ansible-role-yum
+#   version: master
+#   name: yum_role
+
+# further examples not related to while-true-do
+# from a webserver, where the role is packaged in a tar.gz
+# - src: https://some.webserver.example.com/files/master.tar.gz
+#   name: yum-role
+
+# from Bitbucket
+# - src: git+http://bitbucket.org/willthames/git-ansible-galaxy
+#   version: v1.4
+
+# from Bitbucket, alternative syntax and caveats
+# - src: http://bitbucket.org/willthames/hg-ansible-galaxy
+#   scm: hg
+
+# from GitLab or other git-based scm
+# - src: git@gitlab.company.com:mygroup/ansible-base.git
+#   scm: git
+#   version: "0.1"  # quoted, so YAML doesn't parse this as a floating-point value
