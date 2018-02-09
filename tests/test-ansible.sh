@@ -46,10 +46,10 @@ if [ $WTD_ERR ]; then
   $WTD_COLOR_OFF"
   exit 1
 else
-  printf "
+  printf "$WTD_COLOR_GREEN
   **************************************** \n\
   ***        Tests successful          *** \n\
   **************************************** \n\
-  "
+  $WTD_COLOR_OFF"
   exit 0
 fi
