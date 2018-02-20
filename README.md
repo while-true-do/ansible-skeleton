@@ -170,7 +170,7 @@ Thank you so much for considering to contribute. Every contribution helps us.
 We are really happy, when somebody is joining the hard work. Please have a look 
 at the links first.
 
--   [Code of Conduct](.docs/CODE_OF_CONDUCT.md)
+-   [Code of Conduct](./docs/CODE_OF_CONDUCT.md)
 -   [Contribution Guidelines](./docs/CONTRIBUTING.md)
 -   [Create an issue or Request](https://github.com/while-true-do/ansible-galaxy-skeleton/issues)
 -   [See who was contributing already](https://github.com/while-true-do/ansible-galaxy-skeleton/graphs/contributors)
