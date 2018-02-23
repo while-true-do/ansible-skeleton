@@ -23,19 +23,19 @@ BADWORDS_COUNT=$(echo $BADWORDS | wc -w)
 
 if [ $BADWORDS_COUNT -gt 0 ]; then
   printf "$WTD_COLOR_RED
-  Error occured - Found $BADWORDS_COUNT bad word(s) \n\
-  \n\
-  Bad Words: \n\
-  $BADWORDS \n\
-  \n\
-  **************************************** \n\
-  $WTD_COLOR_OFF"
+Error occured - Found $BADWORDS_COUNT bad word(s) \n\
+\n\
+Bad Words: \n\
+$BADWORDS \n\
+\n\
+**************************************** \n\
+$WTD_COLOR_OFF"
   exit 1;
 else
   printf "$WTD_COLOR_GREEN
-  **************************************** \n\
-  ***     Spellchecking successful     *** \n\
-  **************************************** \n\
+**************************************** \n\
+***     Spellchecking successful     *** \n\
+**************************************** \n\
   $WTD_COLOR_OFF"
   exit 0;
 fi

@@ -170,6 +170,7 @@ Thank you so much for considering to contribute. Every contribution helps us.
 We are really happy, when somebody is joining the hard work. Please have a look 
 at the links first.
 
+-   [Code of Conduct](./docs/CODE_OF_CONDUCT.md)
 -   [Contribution Guidelines](./docs/CONTRIBUTING.md)
 -   [Create an issue or Request](https://github.com/while-true-do/ansible-galaxy-skeleton/issues)
 -   [See who was contributing already](https://github.com/while-true-do/ansible-galaxy-skeleton/graphs/contributors)
@@ -180,6 +181,6 @@ This work is licensed under a [BSD License](https://opensource.org/licenses/BSD-
 
 ## Author Information
 
-Blog: [blog.while-true-do.org](https://blog.while-true-do.org)
+Site: [while-true-do.org](https://while-true-do.org)
 
 Mail: [hello@while-true-do.org](mailto:hello@while-true-do.org)
