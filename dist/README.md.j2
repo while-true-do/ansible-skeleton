@@ -14,16 +14,16 @@
 
 ## Installation
 
-Install from [Ansible Galaxy](https://galaxy.ansible.com/while-true-do/{{ role_name }})
+Install from [Ansible Galaxy](https://galaxy.ansible.com/while_true_do/{{ role_name }})
 
 ```
-ansible-galaxy install while-true-do.{{ role_name }}
+ansible-galaxy install while_true_do.{{ role_name }}
 ```
 
 Install from [Github](https://github.com/while-true-do/ansible-role-{{ role_name }})
 
 ```
-git clone https://github.com/while-true-do/ansible-role-{{ role_name }}.git while-true-do.{{ role_name }}
+git clone https://github.com/while-true-do/ansible-role-{{ role_name }}.git while_true_do.{{ role_name }}
 ```
 
 ## Requirements
@@ -70,7 +70,7 @@ Simple Example:
 ```yaml
 - hosts: servers 
   roles:
-    - { role: while-true-do.{{ role_name }} }
+    - { role: while_true_do.{{ role_name }} }
 ```
 
 Advanced Example:
@@ -78,7 +78,7 @@ Advanced Example:
 ```yaml
 - hosts: servers 
   roles:
-    - { role: while-true-do.{{ role_name }}, foo: bar, bar: foo }
+    - { role: while_true_do.{{ role_name }}, foo: bar, bar: foo }
 ```
 
 ## Testing
