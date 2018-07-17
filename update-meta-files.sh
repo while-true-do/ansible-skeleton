@@ -1,8 +1,8 @@
 #!/bin/bash
 #
 # Description:
-#   update-skeleton.sh is a very minimal script to update the skeleton with 
-#   some additional content from while-true-do.org. It will not remove files, 
+#   update-skeleton.sh is a very minimal script to update the skeleton with
+#   some additional content from while-true-do.org. It will not remove files,
 #   you created. Replacement must be acknowledged.
 
 function usage {
@@ -90,7 +90,7 @@ function update_all {
 }
 
 while getopts 'admst' opts; do
-  
+
   case "${opts}" in
     a) update_all ;;
     d) update_docs ;;

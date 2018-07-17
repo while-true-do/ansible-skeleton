@@ -1,5 +1,5 @@
 # Ansible Galaxy Skeleton
-| The while-true-do skeleton to create new ansible-roles. 
+| The while-true-do skeleton to create new ansible-roles.
 
 -  Including a script to update meta files
 -  Can be used with `ansible-galaxy` command
@@ -9,7 +9,7 @@
 
 Creating a repository is always somewhat interesting and needs a lot explanation. This repository should help to reduce the effort and prepare a ready-to-use environment.
 
-With the installation of [Ansible](https://www.ansible.com/) you will get a very useful command `ansible-galaxy`. This command is capable of creating a directory with a lot of cool stuff in it. 
+With the installation of [Ansible](https://www.ansible.com/) you will get a very useful command `ansible-galaxy`. This command is capable of creating a directory with a lot of cool stuff in it.
 
 The [ansible-galaxy-skeleton](https://github.com/while-true-do/ansible-galaxy-skeleton/) will extend this behaviour by providing a custom skeleton for [while-true-do.org](https://while-true-do.org).
 
@@ -167,7 +167,7 @@ You can also automate your testing via Git Hooks. This must be done locally on y
 ## Contribute / Bugs
 
 Thank you so much for considering to contribute. Every contribution helps us.
-We are really happy, when somebody is joining the hard work. Please have a look 
+We are really happy, when somebody is joining the hard work. Please have a look
 at the links first.
 
 -   [Code of Conduct](./docs/CODE_OF_CONDUCT.md)
