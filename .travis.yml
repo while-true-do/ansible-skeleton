@@ -27,3 +27,5 @@ install:
 script:
   - chmod +x tests/test-spelling.sh
   - tests/test-spelling.sh
+  - chmod +x tests/test-whitespace.sh
+  - tests/test-whitespace.sh
