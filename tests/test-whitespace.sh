@@ -12,7 +12,7 @@ WTD_COLOR_OFF='\e[0m'
 # Script
 printf "$WTD_COLOR_BLUE
 **************************************** \n\
-***        Spell Checking            *** \n\
+***       Whitespace Checking        *** \n\
 **************************************** \n\
 $WTD_COLOR_OFF"
 
@@ -38,7 +38,7 @@ $RESULT_MD \n"
 else
   printf "$WTD_COLOR_GREEN
 **************************************** \n\
-***     Spellchecking successful     *** \n\
+***  Whitespace checking successful  *** \n\
 **************************************** \n\
   $WTD_COLOR_OFF"
   if [ "$EXIT_CODE_MD" -eq 0 ]; then
