@@ -1,6 +1,8 @@
+<!--
 If this is your first report, please have a look at the contribution guidelines first.
 
-https://github.com/while-true-do/community/docs/CONTRIBUTING.md
+https://github.com/while-true-do/community/blob/master/docs/CONTRIBUTING.md
+-->
 
 ### Type of Report
 
