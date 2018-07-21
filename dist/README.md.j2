@@ -14,10 +14,10 @@
 
 ## Installation
 
-Install from [Ansible Galaxy](https://galaxy.ansible.com/while_true_do/{{ role_name }})
+Install from [Ansible Galaxy](https://galaxy.ansible.com/while_true_do/{{ role_name | replace("-", "_") }})
 
 ```
-ansible-galaxy install while_true_do.{{ role_name }}
+ansible-galaxy install while_true_do.{{ role_name | replace("-", "_") }}
 ```
 
 Install from [Github](https://github.com/while-true-do/ansible-role-{{ role_name }})
@@ -70,7 +70,7 @@ Simple Example:
 ```yaml
 - hosts: servers
   roles:
-    - { role: while_true_do.{{ role_name }} }
+    - { role: while_true_do.{{ role_name | replace("-", "_") }} }
 ```
 
 Advanced Example:
@@ -78,7 +78,7 @@ Advanced Example:
 ```yaml
 - hosts: servers
   roles:
-    - { role: while_true_do.{{ role_name }}, foo: bar, bar: foo }
+    - { role: while_true_do.{{ role_name | replace("-", "_")}}, foo: bar, bar: foo }
 ```
 
 ## Testing

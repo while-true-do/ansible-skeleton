@@ -2,4 +2,4 @@
 - hosts: localhost
   remote_user: root
   roles:
-    - while_true_do.{{ role_name }}
+    - while_true_do.{{ role_name | replace("-", "_")}}
