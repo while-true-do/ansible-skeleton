@@ -17,7 +17,7 @@ In this document you can find some guidance, how you can take care of bugs, subm
 -   [Submit Changes and Pull Requests](#Submit-Changes-and-Pull-Requests)
 -   [Documentation](#Documentation)
 -   [Testing](#Testing)
-  
+
 ## Resources
 
 -   Documents: <https://github.com/while-true-do/community/>

@@ -32,7 +32,7 @@ Further paragraphs come after blank lines, if needed.
  - Bullet points are okay, too.
  - A hyphen or asterisk is used for the bullet, preceded by a single space and can
    be wrapped around.
-   
+
  - Resolves: #12
  - See also: #33, #44
 ```
