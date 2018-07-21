@@ -96,7 +96,7 @@ The directory / file layout of the new directory will be:
 
 ```
 README.md                 # Tune it to your needs
-LICENSE.md                # This file contains the license
+LICENSE                   # This file contains the license
 
 .editorconfig             # You should consider to use a plugin for editorconfig
 .gitignore                # Both files can be updated via update-meta-files.sh
@@ -128,6 +128,7 @@ templates/
 tests/
   test-ansible.sh         # A script to test your new role.
   test-spelling.sh        # A script to test the spelling of markdown files.
+  test-whitespace.sh      # A script to test for trailing whitespace.
 vars/
   main.yml                # Even more vars can be specified here. These will overwrite defaults
 ```
