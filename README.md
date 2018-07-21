@@ -154,8 +154,9 @@ All tests are located in [test directory](./tests/).
 Basic testing:
 
 ```
-bash ./tests/test-spelling.sh
 bash ./tests/test-ansible.sh
+bash ./tests/test-spelling.sh
+bash ./tests/test-whitespace.sh
 ```
 
 You should also consider to use `ansible-review` from time to time.
