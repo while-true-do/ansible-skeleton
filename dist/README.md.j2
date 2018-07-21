@@ -23,7 +23,7 @@ ansible-galaxy install while_true_do.{{ role_name | replace("-", "_") }}
 Install from [Github](https://github.com/while-true-do/ansible-role-{{ role_name }})
 
 ```
-git clone https://github.com/while-true-do/ansible-role-{{ role_name }}.git while_true_do.{{ role_name }}
+git clone https://github.com/while-true-do/ansible-role-{{ role_name }}.git while_true_do.{{ role_name | replace("-", "_") }}
 ```
 
 ## Requirements
