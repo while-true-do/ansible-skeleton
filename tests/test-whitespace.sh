@@ -19,7 +19,7 @@ $WTD_COLOR_OFF"
 RESULT=$(find . -path "./.git" -prune -o -name "*.md" -prune -o -name "*.md.j2" -o -type f -exec grep -nE ".*\\s+$" {} +)
 EXIT_CODE=$?
 
-RESULT_MD=$(find . -path ./.git -prune -o -regextype sed -regex "\(.*\.md\)\|\(.*\.md\.j2\)" -exec grep -nE ".*\\s+$" {} +)
+RESULT_MD=$(find . -path ./.git -prune -o -regextype sed -regex "\\(.*\\.md\\)\\|\\(.*\\.md\\.j2\\)" -exec grep -nE ".*\\s+$" {} +)
 EXIT_CODE_MD=$?
 
 if [ "$EXIT_CODE" -eq 0 ]; then
