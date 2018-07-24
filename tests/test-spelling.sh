@@ -16,8 +16,8 @@ printf "$WTD_COLOR_BLUE
 **************************************** \\n\
 $WTD_COLOR_OFF"
 
-BADWORDS=$(sed '/^```/,/^```/d' "$WTD_SCRIPT_DIR/../README.md" | aspell --lang=en --encoding=utf-8\
-       	--personal="$WTD_SCRIPT_DIR/.aspell.en.pws" list)
+BADWORDS=$(sed '/^```/,/^```/d' "$WTD_SCRIPT_DIR/../README.md" | aspell --lang=en --encoding=utf-8 \
+  --personal="$WTD_SCRIPT_DIR/.aspell.en.pws" list)
 
 BADWORDS_COUNT=$(echo "$BADWORDS" | wc -w)
 
