@@ -19,9 +19,9 @@ $WTD_COLOR_OFF"
 BADWORDS=$(sed '/^```/,/^```/d' "$WTD_SCRIPT_DIR/../README.md" | aspell --lang=en --encoding=utf-8\
        	--personal="$WTD_SCRIPT_DIR/.aspell.en.pws" list)
 
-BADWORDS_COUNT=$(echo $BADWORDS | wc -w)
+BADWORDS_COUNT=$(echo "$BADWORDS" | wc -w)
 
-if [ $BADWORDS_COUNT -gt 0 ]; then
+if [ "$BADWORDS_COUNT" -gt 0 ]; then
   printf "$WTD_COLOR_RED
 Error occured - Found $BADWORDS_COUNT bad word(s) \\n\
 \\n\

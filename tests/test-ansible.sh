@@ -21,7 +21,7 @@ printf '[defaults]\nroles_path=../' > "$WTD_SCRIPT_DIR/../ansible.cfg"
 printf "**************************************** \\n"
 
 printf "*** Step 2: Install Dependencies     *** \\n"
-if [ -f $WTD_SCRIPT_DIR/../requirements.yml ]; then
+if [ -f "$WTD_SCRIPT_DIR/../requirements.yml" ]; then
   ansible-galaxy install -v -r "$WTD_SCRIPT_DIR/../requirements.yml"
 fi
 printf "**************************************** \\n"
