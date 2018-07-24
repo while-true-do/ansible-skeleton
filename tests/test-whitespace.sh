@@ -27,8 +27,10 @@ if [ "$EXIT_CODE" -eq 0 ]; then
   printf "\\n"
   printf "%b" "$WTD_COLOR_RED"
   printf "%s\\n" "Error occured - Found trailing whitespace"
-  printf "%s\\n" "$WTD_HR_LINE"
+  printf "\\n"
   printf "%s\\n" "$RESULT"
+  printf "\\n"
+  printf "%s" "$WTD_HR_LINE"
   printf "%b" "$WTD_COLOR_OFF"
   if [ "$EXIT_CODE_MD" -eq 0 ]; then
     printf "\\n%s\\n%s\\n" "Please also check the below Markdown files manually:" "$RESULT_MD"
