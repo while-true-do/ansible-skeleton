@@ -3,7 +3,7 @@
 # Generic test script for ansible roles.
 
 # Variables
-WTD_SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+WTD_SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 WTD_COLOR_BLUE='\e[1;34m'
 WTD_COLOR_GREEN='\e[1;32m'
 WTD_COLOR_RED='\e[1;31m'
