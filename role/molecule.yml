@@ -1,0 +1,27 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+lint:
+  name: yamllint
+platforms:
+  # Please also maintain meta/main.yml
+  - name: fedora29
+    image: fedora:29
+  - name: centos7
+    image: centos:7
+  - name: oracle7
+    image: oraclelinux:7
+# - name: debian9
+#   image: debian:9
+# - name: ubuntu1804
+#   image: ubuntu:18.04
+provisioner:
+  name: ansible
+  lint:
+    name: ansible-lint
+verifier:
+  name: testinfra
+  lint:
+    name: flake8

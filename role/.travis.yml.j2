@@ -7,40 +7,22 @@
 # reference: https://docs.travis-ci.com/user/customizing-the-build
 
 language: python
-sudo: required
-# Include supported python versions
-python:
-  - "2.7"
-  - "3.5"
-  - "3.6"
 services:
+  # Provide the docker service.
   - docker
 
-# env:
-#
-# before_install:
-#
 install:
+  # Install test dependencies.
   - pip install ansible molecule[docker]
-#
-# before_script:
-# Most likely, you want to put conf actions here
-#
+
+before_script:
+  # Use actual Ansible Galaxy role name for the project directory.
+  - ln -s  $PWD ../while_true_do.{{ role_name }}
+  - cd ../while_true_do.{{ role_name }}
+
 script:
+  # Do the tests.
   - molecule test
-#
-# after_success:
-#
-# after_failure:
-#
-# before_deploy:
-#
-# deploy:
-#
-# after_deploy:
-#
-# after_script:
-#
 
 notifications:
   email:
