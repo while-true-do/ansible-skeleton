@@ -14,7 +14,7 @@ license: BSD-3-Clause
 
 # Ansible Skeleton
 
-The while-true-do skeleton to create new ansible-roles.
+The skeleton to create new ansible roles.
 
 ## Motivation
 
