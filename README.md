@@ -1,188 +1,156 @@
-# Ansible Galaxy Skeleton
-| The while-true-do skeleton to create new ansible-roles.
+<!--
+name: README.md
+description: This file contains important information for the repository.
+author: while-true-do.io
+contact: hello@while-true-do.io
+license: BSD-3-Clause
+-->
 
--  Including a script to update meta files
--  Can be used with `ansible-galaxy` command
--  Includes some testing-scripts
+<!-- github shields -->
+![](https://img.shields.io/github/tag/while-true-do/ansible-role-{{ role_name }}.svg)
+![](https://img.shields.io/github/license/while-true-do/ansible-role-{{ role_name }}.svg)
+![](https://img.shields.io/github/issues/while-true-do/ansible-role-{{ role_name }}.svg)
+![](https://img.shields.io/github/issues-pr/while-true-do/ansible-role-{{ role_name }}.svg)
+
+# Ansible Skeleton
+
+The while-true-do skeleton to create new ansible-roles.
 
 ## Motivation
 
 Creating a repository is always somewhat interesting and needs a lot explanation. This repository should help to reduce the effort and prepare a ready-to-use environment.
 
-With the installation of [Ansible](https://www.ansible.com/) you will get a very useful command `ansible-galaxy`. This command is capable of creating a directory with a lot of cool stuff in it.
+## Description
 
-The [ansible-galaxy-skeleton](https://github.com/while-true-do/ansible-galaxy-skeleton/) will extend this behaviour by providing a custom skeleton for [while-true-do.org](https://while-true-do.org).
+-   provides lot of template for new roles
+-   provides lot of defaults for new roles
+-   usable with `ansible-galaxy init`
 
 ## Requirements
 
-You need the following tools on your system:
-
-- ansible
-- ansible-lint
-- ansible-review
-- aspell
-- aspell-en
-- bash
-- git
-
-## Dependencies
-
-The `update-meta-files.sh` depends on the reachability of other repositories.
-
--   <https://github.com/while-true-do/community>
--   <https://github.com/while-true-do/ansible-galaxy-skeleton>
+-   Virtualenv
+-   Running Docker Service
 
 ## Installation
 
-Install from [Github](https://github.com/while-true-do/ansible-galaxy-skeleton/)
-
+Install from [Github](https://github.com/while-true-do/ansible-skeleton)
 ```
-git clone https://github.com/while-true-do/ansible-galaxy-skeleton.git
-
+git clone https://github.com/while-true-do/ansible-skeleton.git
 ```
-
-## Update
-
-Updating the skeleton itself is as easy as
-
-```
-cd ansible-galaxy-skeleton
-git fetch
-git pull
-```
-
-This should be done from time to time.
 
 ## Usage
 
-Here you will see how this whole thingy should be used.
+### Install Ansible
 
-### Using the skeleton
-
-There are multiple ways described [here](http://docs.ansible.com/ansible/latest/galaxy.html#using-a-custom-role-skeleton).
+The recommended and portable way to install ansible is via virtualenv.
 
 ```
-# Edit global ansible.cfg
+# Create a new virtualenv
+virtualenv --no-site-packages <env_name>
+# Activate virtualenv
+source <env_name>/bin/activate
+# Install Ansible
+pip install ansible
+```
+
+Sometimes, you have to symlink the selinux packages manually.
+
+```
+# Search local site-packages
+find /usr/lib64 -iname "*selinux*"
+# Now you have to symlink the selinux directory and the python-c-bindings
+# Example:
+cd <env_name>
+ln -s /usr/lib64/python3.7/site-packages/_selinux.cpython-37m-x86_64-linux-gnu.so ./lib/python3.7/site-packages/selinux
+ln -s /usr/lib64/python3.7/site-packages/_selinux.cpython-37m-x86_64-linux-gnu.so ./lib/python3.7/site-packages/_selinux.cpython-37m-x86_64-linux-gnu.so
+```
+
+### Configure Ansible
+
+Ansible configuration can be done in multiple files, depending on your needs.
+
+```
+# Edit system ansible.cfg
 sudo vi /etc/ansible/ansible.cfg
 
-# Edit local ansible
+# Edit user ansible.cfg
 vi ~/.ansible.cfg
 
-# Edit the current directory
+# Add one to the specific role
 vi ansible.cfg (in the current directory)
 ```
 
-You have to add/edit the content.
+You have to add the following lines:
 
 ```
-[...]
-
 [galaxy]
-role_skeleton = /path/to/skeleton/dist
-role_skeleton_ignore = ^.git$,^.git_keep$,^README.md$
-
-[...]
+role_skeleton = <path_to_ansible-skeleton>/role
+role_skeleton_ignore = ^.git$,^.*/.git_keep$
 ```
 
-Alternatively you can use it directly. But ignoring of unwanted files does not work.
+### Install molecule
+
+Molecule must be installed in the same virtualenv (see above).
 
 ```
-ansible-galaxy init --role-skeleton=/path/to/ansible-galaxy-skeleton/dist/ <role-name>
+# Activate virtualenv
+source <env_name>/bin/activate
+# Install molecule and docker support
+pip install molecule[docker]
 ```
 
-### Layout / Structure
+### Initialize a new role
 
-The directory / file layout of the new directory will be:
-
-```
-README.md                 # Tune it to your needs
-LICENSE                   # This file contains the license
-
-.editorconfig             # You should consider to use a plugin for editorconfig
-.gitignore                # Both files can be updated via update-meta-files.sh
-
-.travis.yml               # This file is used from travis-ci for automated testing.
-
-update-meta-files.sh      # The script to update meta files and docs and tests
-
-requirements.yml          # This file show all necessary dependencies
-
-docs/
-  doc01                   # Here you can find documents like our CONTRIBUTING.md
-  doc02                   # The documents are maintained in
-  doc03                   # https://github.com/while-true-do/community
-  doc04                   # and can be updated via update-meta-files.sh
-
-defaults/
-  main.yml                # Containing some useful comments
-files/
-  file01                  # Maybe some files are used in the "tasks"
-handlers/
-  main.yml                # Everything which will be triggered via "notify".
-meta/
-  main.yml                # A meta file, which is used in ansible galaxy.
-tasks/
-  main.yml                # Here you will find the tasks, which are in the role.
-templates/
-  foo.j2                  # Often Templates are needed for config files.
-tests/
-  test-ansible.sh         # A script to test your new role.
-  test-spelling.sh        # A script to test the spelling of markdown files.
-  test-whitespace.sh      # A script to test for trailing whitespace.
-vars/
-  main.yml                # Even more vars can be specified here. These will overwrite defaults
-```
-
-### Using the script
-
-There is a script included, which should be used to keep meta-files up-to-date.
+You only have to do 3 steps.
 
 ```
-# Getting help
-bash ./update-meta-files.sh -h
+# Step 1: Initialize a new role
+ansible-galaxy init <role_name>
+mv <role_name> while_true_do.<role_name>
 
-# Update the update script
-bash ./update-meta-files.sh -s
+# Step 2: Modify all "TODO" steps
+grep -r "TODO" while_true_do.<role_name>
 
-# Update all meta files.
-bash ./update-meta-files.sh -a
+# Step 3: Initialize
+molecule init scenario -r <while_true_do.role_name>
 ```
 
-### Using the tests
+### Test a new role
 
-All tests are located in [test directory](./tests/).
-
-Basic testing:
+Molecule has multiple ways of testing role.
 
 ```
-bash ./tests/test-ansible.sh
-bash ./tests/test-spelling.sh
-bash ./tests/test-whitespace.sh
+# test
+molecule test
+# lint
+molecule lint
+# converge
+molecule converge
 ```
 
-You should also consider to use `ansible-review` from time to time.
+## Testing
 
-### Git Hooks
+This repository is not tested.
 
-You can also automate your testing via Git Hooks. This must be done locally on your machine.
+## Contribute
 
-## Contribute / Bugs
+Thank you so much for considering to contribute. We are very happy, when somebody
+is joining the hard work. Please fell free to open
+[Bugs, Feature Requests](https://github.com/while-true-do/ansible-role-{{ role_name }}/issues)
+or [Pull Requests](https://github.com/while-true-do/ansible-role-{{ role_name }}/pulls) after
+reading the [Contribution Guideline](https://github.com/while-true-do/doc-library/blob/master/docs/CONTRIBUTING.md).
 
-Thank you so much for considering to contribute. Every contribution helps us.
-We are really happy, when somebody is joining the hard work. Please have a look
-at the links first.
-
--   [Code of Conduct](./docs/CODE_OF_CONDUCT.md)
--   [Contribution Guidelines](./docs/CONTRIBUTING.md)
--   [Create an issue or Request](https://github.com/while-true-do/ansible-galaxy-skeleton/issues)
--   [See who was contributing already](https://github.com/while-true-do/ansible-galaxy-skeleton/graphs/contributors)
+See who has contributed already in the [kudos.txt](./kudos.txt).
 
 ## License
 
-This work is licensed under a [BSD License](https://opensource.org/licenses/BSD-3-Clause).
+This work is licensed under a [BSD-3-Clause License](https://opensource.org/licenses/BSD-3-Clause).
 
-## Author Information
+## Contact
 
-Site: [while-true-do.org](https://while-true-do.org)
-
-Mail: [hello@while-true-do.org](mailto:hello@while-true-do.org)
+-   Site <https://while-true-do.io>
+-   Twitter <https://twitter.com/wtd_news>
+-   Code <https://github.com/while-true-do>
+-   Mail [hello@while-true-do.io](mailto:hello@while-true-do.io)
+-   IRC [freenode, #while-true-do](https://webchat.freenode.net/?channels=while-true-do)
+-   Telegram <https://t.me/while_true_do>
