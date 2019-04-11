@@ -112,7 +112,7 @@ mv <role_name> while_true_do.<role_name>
 grep -r "TODO" while_true_do.<role_name>
 
 # Step 3: Initialize
-molecule init scenario -r <while_true_do.role_name>
+molecule init scenario -r while_true_do.<role_name>
 ```
 
 ### Test a new role
@@ -136,8 +136,8 @@ This repository is not tested.
 
 Thank you so much for considering to contribute. We are very happy, when somebody
 is joining the hard work. Please fell free to open
-[Bugs, Feature Requests](https://github.com/while-true-do/ansible-role-{{ role_name }}/issues)
-or [Pull Requests](https://github.com/while-true-do/ansible-role-{{ role_name }}/pulls) after
+[Bugs, Feature Requests](https://github.com/while-true-do/ansible-skeleton/issues)
+or [Pull Requests](https://github.com/while-true-do/ansible-role-skeleton/pulls) after
 reading the [Contribution Guideline](https://github.com/while-true-do/doc-library/blob/master/docs/CONTRIBUTING.md).
 
 See who has contributed already in the [kudos.txt](./kudos.txt).
