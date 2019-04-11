@@ -7,10 +7,10 @@ license: BSD-3-Clause
 -->
 
 <!-- github shields -->
-![](https://img.shields.io/github/tag/while-true-do/ansible-role-{{ role_name }}.svg)
-![](https://img.shields.io/github/license/while-true-do/ansible-role-{{ role_name }}.svg)
-![](https://img.shields.io/github/issues/while-true-do/ansible-role-{{ role_name }}.svg)
-![](https://img.shields.io/github/issues-pr/while-true-do/ansible-role-{{ role_name }}.svg)
+![](https://img.shields.io/github/tag/while-true-do/ansible-skeleton.svg)
+![](https://img.shields.io/github/license/while-true-do/ansible-skeleton.svg)
+![](https://img.shields.io/github/issues/while-true-do/ansible-skeleton.svg)
+![](https://img.shields.io/github/issues-pr/while-true-do/ansible-skeleton.svg)
 
 # Ansible Skeleton
 
