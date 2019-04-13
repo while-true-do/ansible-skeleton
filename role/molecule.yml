@@ -6,17 +6,31 @@ driver:
 lint:
   name: yamllint
 platforms:
-  # Please also maintain meta/main.yml
+  # Please also maintain:
+  # - meta/main.yml
+  # - molecule/default/tests/test_default.py
   - name: fedora29
     image: fedora:29
+    command: /sbin/init
+    volume_mounts:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    tmpfs:
+      - /run
+      - /tmp
+    environment:
+      container: docker
+
   - name: centos7
     image: centos:7
-  - name: oracle7
-    image: oraclelinux:7
-# - name: debian9
-#   image: debian:9
-# - name: ubuntu1804
-#   image: ubuntu:18.04
+    command: /sbin/init
+    volume_mounts:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    tmpfs:
+      - /run
+      - /tmp
+    environment:
+      container: docker
+
 provisioner:
   name: ansible
   lint:
