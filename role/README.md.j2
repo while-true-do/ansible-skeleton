@@ -48,6 +48,13 @@ license: BSD-3-Clause
 -   Is something needed before one can install?
 -->
 
+<!-- TODO: List all used Ansible modules and remove this line. -->
+
+Used Modules:
+
+-   [module1](link)
+-   [module2](link)
+
 ## Installation
 
 <!-- TODO: Describe the Installation process.
@@ -76,10 +83,42 @@ ansible-galaxy install while_true_do.{{ role_name }}
 -   Is there something to configure?
  -->
 
-Used Modules:
+### Role Variables
 
--   [module1](link)
--   [module2](link)
+<!-- TODO: Provide Variables, describe them and renove this line. -->
+```
+---
+# defaults file for while_true_do.{{ role_name }}
+
+```
+
+### Example Playbook
+
+Running Ansible
+[Roles](https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html)
+can be done in a
+[playbook](https://docs.ansible.com/ansible/latest/user_guide/playbooks_intro.html).
+
+#### Simple
+
+```
+---
+- hosts: all
+  roles:
+    - role: while_true_do.{{ role_name }}
+```
+
+<!-- TODO: Provide advanced example or remove it.
+#### Advanced
+
+```
+- hosts: all
+  roles:
+    - role: while_true_do.{{ role_name }}
+      variable_1: foo
+      variable_2: bar
+```
+-->
 
 ## Testing
 
