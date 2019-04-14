@@ -49,7 +49,6 @@ license: BSD-3-Clause
 -->
 
 <!-- TODO: List all used Ansible modules and remove this line. -->
-
 Used Modules:
 
 -   [module1](link)
@@ -64,15 +63,23 @@ Used Modules:
 -   Are special commands needed to build/install/run?
 -->
 
+Install from [Ansible Galaxy](https://galaxy.ansible.com/while_true_do/{{ role_name }})
+```
+ansible-galaxy install while_true_do.{{ role_name }}
+```
+
 Install from [Github](https://github.com/while-true-do/ansible-role-{{ role_name }})
 ```
 git clone https://github.com/while-true-do/ansible-role-{{ role_name }}.git while_true_do.{{ role_name }}
 ```
 
-Install from [Ansible Galaxy](https://galaxy.ansible.com/while_true_do/{{ role_name }})]
+<!-- TODO: Describe manual dependency installation and/or remove this block.
+Dependencies:
+
 ```
-ansible-galaxy install while_true_do.{{ role_name }}
+ansible-galaxy install -r requirements.yml
 ```
+-->
 
 ## Usage
 
@@ -124,14 +131,15 @@ can be done in a
 
 Most of the "generic" tests are located in the
 [Test Library](https://github.com/while-true-do/test-library).
-<!-- TODO: Move the molecule.yml to molecule/default/molecule.yml and remove
-this comment. -->
+
+<!-- TODO: Move the molecule.yml to molecule/default/molecule.yml and remove this comment. -->
 Ansible specific testing is done with
 [Molecule](https://molecule.readthedocs.io/en/stable/).
-<!-- TODO: Provide tests in molecule/default/tests/test_default.py and remove
-this comment. -->
+
+<!-- TODO: Provide tests in molecule/default/tests/test_default.py and remove this comment. -->
 Infrastructure testing is done with
 [testinfra](https://testinfra.readthedocs.io/en/stable/).
+
 <!-- TODO: Provide tests in .travis-yml and remove this comment. -->
 Automated testing is done with [Travis CI](https://travis-ci.com).
 
