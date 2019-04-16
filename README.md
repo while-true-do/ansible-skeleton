@@ -12,7 +12,7 @@ license: BSD-3-Clause
 [![Github (issues)](https://img.shields.io/github/issues/while-true-do/ansible-skeleton.svg)](https://github.com/while-true-do/ansible-skeleton/issues)
 [![Github (pull requests)](https://img.shields.io/github/issues-pr/while-true-do/ansible-skeleton.svg)](https://github.com/while-true-do/ansible-skeleton/pulls)
 <!-- travis shields -->
-[![Travis (com)](https://img.shields.io/travis/com/while-true-do/ansible-skeleton.svg)]
+[![Travis (com)](https://img.shields.io/travis/com/while-true-do/ansible-skeleton.svg)](https://travis-ci.com/while-true-do/ansible-skeleton)
 
 # Ansible Skeleton
 
