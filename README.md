@@ -7,12 +7,12 @@ license: BSD-3-Clause
 -->
 
 <!-- github shields -->
-![Github (tag)](https://img.shields.io/github/tag/while-true-do/ansible-skeleton.svg)
-![Github (license)](https://img.shields.io/github/license/while-true-do/ansible-skeleton.svg)
-![Github (issues)](https://img.shields.io/github/issues/while-true-do/ansible-skeleton.svg)
-![Github (pull requests)](https://img.shields.io/github/issues-pr/while-true-do/ansible-skeleton.svg)
+[![Github (tag)](https://img.shields.io/github/tag/while-true-do/ansible-skeleton.svg)](https://github.com/while-true-do/ansible-skeleton/tags)
+[![Github (license)](https://img.shields.io/github/license/while-true-do/ansible-skeleton.svg)](https://github.com/while-true-do/ansible-skeleton/blob/master/LICENSE)
+[![Github (issues)](https://img.shields.io/github/issues/while-true-do/ansible-skeleton.svg)](https://github.com/while-true-do/ansible-skeleton/issues)
+[![Github (pull requests)](https://img.shields.io/github/issues-pr/while-true-do/ansible-skeleton.svg)](https://github.com/while-true-do/ansible-skeleton/pulls)
 <!-- travis shields -->
-![Travis (com)](https://img.shields.io/travis/com/while-true-do/ansible-skeleton.svg)
+[![Travis (com)](https://img.shields.io/travis/com/while-true-do/ansible-skeleton.svg)]
 
 # Ansible Skeleton
 
@@ -299,6 +299,7 @@ As you can see, there are 3 variables.
 |               | prv_*         | Roles to use a provider service like aws, azure, nagios. |
 |               | rpo_*         | Roles to enable, disable all kinds of repositories. |
 |               | srv_*         | Roles to install server or services like docker, httpd, ntp. |
+|               | sys_*         | Roles to do something with a system itself, like upgrade or reboot. |
 
 This will lead to a clear differentiation between provisioning, OS configuration,
 application, etc.
