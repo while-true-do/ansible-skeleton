@@ -11,3 +11,4 @@
 .gitignore export-ignore
 .gitmessages export-ignore
 /tests
+/molecule

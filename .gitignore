@@ -18,6 +18,9 @@
 # ansible retry files
 *.retry
 
+# cache
+**/__pycache__
+
 # temporary files
 *.swp
 *.swo

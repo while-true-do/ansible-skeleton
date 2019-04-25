@@ -1,11 +1,13 @@
+---
 # name: requirements.yml
 # description: This file contains dependencies.
 # author: while-true-do.io
 # contact: hello@while-true-do.io
 # license: BSD-3-Clause
 
-# from galaxy
-# - src: while_true_do.yum
+# from Galaxy (with optional version)
+# - src: while_true_do.sys_yum
+#   version: 1.0.0
 
 # from GitHub
 # - src: https://github.com/while-true-do/ansible-role-yum
@@ -15,7 +17,6 @@
 #   version: master
 #   name: yum_role
 
-# further examples not related to while-true-do
 # from a webserver, where the role is packaged in a tar.gz
 # - src: https://some.webserver.example.com/files/master.tar.gz
 #   name: yum-role

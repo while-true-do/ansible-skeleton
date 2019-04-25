@@ -76,6 +76,11 @@ ln -s /usr/lib64/python3.7/site-packages/_selinux.cpython-37m-x86_64-linux-gnu.s
 ln -s /usr/lib64/python3.7/site-packages/_selinux.cpython-37m-x86_64-linux-gnu.so ./lib/python3.7/site-packages/_selinux.cpython-37m-x86_64-linux-gnu.so
 ```
 
+Furthermore, selinux requires you to allow docker to manage cgroups.
+```
+setsebool -P container_manage_cgroup on
+```
+
 ### Configure Ansible
 
 [Ansible](https://docs.ansible.com/) configuration can be done in multiple
