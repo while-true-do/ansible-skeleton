@@ -9,16 +9,22 @@ scenario:
     - create
     - prepare
     - converge
-    # - idempotence
+    - idempotence
     - side_effect
     - verify
     - destroy
-dependency:
-  name: galaxy
-driver:
-  name: docker
+
 lint:
   name: yamllint
+
+dependency:
+  name: galaxy
+  options:
+    role-file: "requirements.yml"
+
+driver:
+  name: docker
+
 platforms:
   # Please also maintain:
   # - meta/main.yml
@@ -31,6 +37,23 @@ platforms:
     tmpfs:
       - /run
       - /tmp
+    restart_policy: unless-stopped
+    groups:
+      - python3
+    environment:
+      container: docker
+
+  - name: fedora30
+    image: fedora:30
+    command: /sbin/init
+    volume_mounts:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    tmpfs:
+      - /run
+      - /tmp
+    restart_policy: unless-stopped
+    groups:
+      - python3
     environment:
       container: docker
 
@@ -42,6 +65,9 @@ platforms:
     tmpfs:
       - /run
       - /tmp
+    restart_policy: unless-stopped
+    groups:
+      - python2
     environment:
       container: docker
 
@@ -53,6 +79,9 @@ platforms:
     tmpfs:
       - /run
       - /tmp
+    restart_policy: unless-stopped
+    groups:
+      - python2
     environment:
       container: docker
 
@@ -60,6 +89,11 @@ provisioner:
   name: ansible
   lint:
     name: ansible-lint
+  inventory:
+    group_vars:
+      python3:
+        ansible_python_interpreter: "/usr/bin/python3"
+
 verifier:
   name: testinfra
   options:
