@@ -190,7 +190,9 @@ testing roles.
 
 ```
 # test (create + tests + destroy)
-molecule test
+image="centos:7" molecule test
+# You can handover more details according to molecule.yml
+name="myName" image="myImage:10" pygroup="python3" molecule test
 
 # create (create docker container)
 molecule create

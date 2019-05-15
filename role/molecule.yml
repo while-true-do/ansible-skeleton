@@ -20,68 +20,24 @@ lint:
 dependency:
   name: galaxy
   options:
-    role-file: "requirements.yml"
+    role-file: requirements.yml
 
 driver:
   name: docker
 
 platforms:
-  # Please also maintain:
-  # - meta/main.yml
-  # - molecule/default/tests/test_default.py
-  - name: fedora29
-    image: fedora:29
+  - name: ${name}
+    image: ${image}
     command: /sbin/init
     volume_mounts:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
     tmpfs:
       - /run
       - /tmp
+    privileged: true
     restart_policy: unless-stopped
     groups:
-      - python3
-    environment:
-      container: docker
-
-  - name: fedora30
-    image: fedora:30
-    command: /sbin/init
-    volume_mounts:
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
-    tmpfs:
-      - /run
-      - /tmp
-    restart_policy: unless-stopped
-    groups:
-      - python3
-    environment:
-      container: docker
-
-  - name: centos7
-    image: centos:7
-    command: /sbin/init
-    volume_mounts:
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
-    tmpfs:
-      - /run
-      - /tmp
-    restart_policy: unless-stopped
-    groups:
-      - python2
-    environment:
-      container: docker
-
-  - name: redhat7
-    image: centos:7
-    command: /sbin/init
-    volume_mounts:
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
-    tmpfs:
-      - /run
-      - /tmp
-    restart_policy: unless-stopped
-    groups:
-      - python2
+      - ${pygroup:-python}
     environment:
       container: docker
 
@@ -92,7 +48,7 @@ provisioner:
   inventory:
     group_vars:
       python3:
-        ansible_python_interpreter: "/usr/bin/python3"
+        ansible_python_interpreter: /usr/bin/python3
 
 verifier:
   name: testinfra
