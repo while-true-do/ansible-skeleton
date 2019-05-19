@@ -1,0 +1,7 @@
+# TODO: Use this file as an example or remove it.
+#
+# You should always provide a headline.
+# For proper commenting, please review
+# https://docs.ansible.com/ansible/latest/user_guide/playbooks_filters.html#comment-filter
+#
+# Example: {{ ansible_managed | comment }}

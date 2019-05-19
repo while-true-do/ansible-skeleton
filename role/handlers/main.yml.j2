@@ -1,2 +1,13 @@
 ---
 # handlers file for while_true_do.{{ role_name }}
+#
+# TODO: Edit this file or remove everything below.
+
+- name: Restart XXXXX
+  service:
+    name: ""
+    state: "restarted"
+  become: true
+  tags:
+    - {{ role_name }}
+    - service

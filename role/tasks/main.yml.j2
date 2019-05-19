@@ -1,2 +1,62 @@
 ---
 # tasks file for while_true_do.{{ role_name }}
+
+# TODO: Edit this file and remove parts, you don't need.
+
+- name: Manage {{ role_name }} Packages
+  package:
+    name: ""
+    state: ""
+  become: true
+  tags:
+    - {{ role_name }}
+    - package
+
+- name: Manage {{ role_name }} Configuration
+  template:
+    src: ""
+    dest: ""
+  become: true
+  notify: "Restart"
+  when:
+    - wtd_{{ role_name }}_package_state != "absent"
+  tags:
+    - {{ role_name }}
+    - configuration
+
+- name: Manage {{ role_name }} SELinux
+  sefcontext|seboolean|seport|selogin:
+    ...
+  become: true
+  when:
+    - ansible_selinux.status == "enabled"
+    - wtd_{{ role_name }}_package_state != "absent"
+  tags:
+    - {{ role_name }}
+    - selinux
+    - security
+
+- name: Manage {{ role_name }} Service
+  service:
+    name: ""
+    state: ""
+    enabled: ""
+  become: true
+  when:
+    - wtd_{{ role_name }}_package_state != "absent"
+  tags:
+    - {{ role_name }}
+    - service
+
+- name: Manage {{ role_name }} FW Service
+  firewalld:
+    service: ""
+    state: ""
+    zone: ""
+  become: true
+  when:
+    - wtd_{{ role_name }}_package_state != "absent"
+  tags:
+    - {{ role_name }}
+    - security
+    - firewall

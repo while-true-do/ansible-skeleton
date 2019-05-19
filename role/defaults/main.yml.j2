@@ -1,2 +1,42 @@
 ---
 # defaults file for while_true_do.{{ role_name }}
+
+# TODO: Edit this file and remove this section.
+# Not needed blocks can be removed, too.
+#
+# Guidelines for variable usage and naming can be found in the while-true-do.io
+# ansible coding convention: https://github.com/while-true-do/ansible-skeleton.
+
+## Role Management
+# Role can be client|server|xxxxx
+wtd_{{ role_name }}_role: ""
+
+## Package Management
+# https://docs.ansible.com/ansible/latest/modules/package_module.html
+wtd_{{ role_name }}_package: ""
+# State can be present|latest|absent
+wtd_{{ role_name }}_package_state: "present"
+
+## Configuration Management
+# https://docs.ansible.com/ansible/latest/modules/template_module.html
+wtd_{{ role_name }}_conf: ""
+
+## SELinux Management
+# https://docs.ansible.com/ansible/latest/modules/selinux_module.html
+wtd_{{ role_name }}_se: "..."
+
+## Service Management
+# https://docs.ansible.com/ansible/latest/modules/service_module.html
+wtd_{{ role_name }}_service: ""
+# State can be started|stopped
+wtd_{{ role_name }}_service_state: ""
+wtd_{{ role_name }}_service_enabled: true
+
+## Firewalld Management
+# https://docs.ansible.com/ansible/latest/modules/firewalld_module.html
+wtd_{{ role_name }}_fw_mgmt: true
+wtd_{{ role_name }}_fw_service: ""
+# State can be enabled|disabled
+wtd_{{ role_name }}_fw_state: "enabled"
+# Zone can be according to defined zones on your machine.
+wtd_{{ role_name }}_fw_zone: "public"
