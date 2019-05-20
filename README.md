@@ -125,7 +125,7 @@ source $env_name/bin/activate
 pip install molecule[docker]
 ```
 
-### Create Ansible role
+### Create Ansible Role
 
 Some manual steps are needed to create new role from scratch.
 
@@ -134,85 +134,14 @@ Some manual steps are needed to create new role from scratch.
 ansible-galaxy init $role_name
 mv $role_name while_true_do.$role_name
 
-# Step 2: Initialize molecule
-molecule init scenario -r while_true_do.$role_name
-
-# Step 3: Move molecule.yml
-mv molecule.yml molecule/default/molecule.yml
-
-# Step 4: Review and Modify all "TODO" steps
+# Step 2: Review and Modify all "TODO" steps
 grep -r "TODO" while_true_do.$role_name
 ```
 
 ### Add Tests to the role
 
-Testing is key for new roles. You want to get comfortable with the following
-files and tools.
-
-#### Molecule
-
-[Molecule](https://molecule.readthedocs.io/en/stable/) is the testing framework
-used for Ansible. You should have a look at the `molecule.yml` and configure
-it properly with OS, you want to test.
-
-#### Testinfra
-
-[Testinfra](https://testinfra.readthedocs.io/en/stable/) is a testing suite,
-which should be used for writing your tests, before writing the role. Since
-Ansible is having a very declarative way of handling tasks, this is not needed
-in all cases, but you should get comfortable with the suite and start writing
-tests, when possible. You should review and tune the `test_default.py`, after
-initializing the role with Molecule.
-
-**Example**
-```
-import os
-
-import testinfra.utils.ansible_runner
-
-testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
-    os.environ['MOLECULE_INVENTORY_FILE']).get_hosts('all')
-
-# Test, if httpd is installed
-def test_httpd_package(host):
-    pkg = host.package("httpd")
-    assert pkg.is_installed
-
-# Test, if httpd service is running
-def test_httpd_service(host):
-    srv = host.service("httpd")
-    assert srv.is_running
-    assert srv.is_enabled
-```
-
-#### Travis CI
-
-[Travis CI](travis-ci.com) does the test automation. The skeleton provides a
-`.travis-yml`, which should be "okay" for many Ansible use cases. Nevertheless,
-please feel free to review the file and add tests or scenarios, when needed.
-
-### Test Ansible role with Molecule
-
-[Molecule](https://molecule.readthedocs.io/en/stable/) has multiple ways of
-testing roles.
-
-```
-# test (create + tests + destroy)
-molecule test
-# You can handover more details according to molecule.yml
-name="myName" image="myImage:10" pygroup="python3" molecule test
-
-# create (create docker container)
-molecule create
-# lint (check syntax)
-molecule lint
-# converge (run the role / playbook)
-molecule converge
-# verify (run testinfra tests)
-molecule verify
-# destroy (destroy the VMs)
-molecule destroy
-```
+Testing is key for new roles. You want to get comfortable with the
+[Ansible Testing Convention](docs/TESTING_ROLE.md).
 
 ## Testing
 
