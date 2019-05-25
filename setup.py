@@ -58,6 +58,8 @@ def checkRequirements():
       subprocess.check_call([packageManager, "-qi", req], stdout=subprocess.PIPE)
     except subprocess.CalledProcessError as identifier:
       exit('The requirement ' + req + ' is not installed. Please install it.')
+  if not int(exec_command('ps aux | grep [d]ockerd | wc -l')[0].decode("utf-8")) >= 1:
+    exit('Docker need to be run')
     
 def findFile(pattern, path):
   result = []
