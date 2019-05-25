@@ -1,18 +1,14 @@
 import os, sys
+import distro
 import platform
 import subprocess
 import fnmatch
 import ntpath
-
-##################################
-# User Variables need to change
-envName = 'test'
-##################################
-
-debug = False
+import pathlib
+import shutil
 
 # Exit if windows
-if platform.system == 'windows':
+if distro.id() == 'windows':
   exit
 
 packageManager = 'rpm'
@@ -47,21 +43,13 @@ def infoBanner(action):
 
 def exec_command(cmd):
   p = subprocess.Popen(cmd, stdout=subprocess.PIPE,shell=True)
-  if debug:
-    print(p.communicate(cmd))
-    p.wait()
-  else:
-    p.wait()
-    return p.communicate(cmd)
+  p.wait()
+  return p.communicate(cmd)
 
 def execCommandVirtualenv(cmd,precmd):
   p = subprocess.Popen(precmd + ";" + cmd, stdout=subprocess.PIPE,shell=True)
-  if debug:
-    print(p.communicate(cmd))
-    p.wait()
-  else:
-    p.wait()
-    return p.communicate(cmd)
+  p.wait()
+  return p.communicate(cmd)
 
 def checkRequirements():
   requirements = ['docker',  "python" + platform.python_version_tuple()[0]+'-virtualenv']
@@ -90,25 +78,23 @@ def findFolder(head_dir, dir_name):
 def setSymlinkSeLinux():
   infoBanner('Set Symlink')
   i = 0
+  choose = 123456
   print('Please select the number of the source part of the symbolic link.')
   findings = findFile("*selinux*",'/usr/lib64')
   for f in findings:
     print(str(i) + ": " + f)
     i += 1
-  choose = int(input('Your Choose system-selinux folder:'))
+
+  while (choose > i):
+    choose = int(input('Your Choose system-selinux:'))
+
   pythonversion = platform.python_version_tuple()[0] + '.' + platform.python_version_tuple()[1]
-  exec_command('cd ' + envName + '; ln -s /usr/lib64/python' + platform.python_version_tuple()[0] + '.'+ platform.python_version_tuple()[1] + '/site-packages/selinux' +  ' ' + './lib/python' + platform.python_version_tuple()[0] + '.'+ platform.python_version_tuple()[1] + '/site-packages/selinux')
-  exec_command('cd ' + envName + '; ln -s ' + findings[choose] + ' ./lib/python' + platform.python_version_tuple()[0] + '.'+ platform.python_version_tuple()[1] + '/site-packages/' + ntpath.basename(findings[choose]))
+  exec_command('cd ' + envName + '; ln -s /usr/lib64/python' + pythonversion + '/site-packages/selinux' +  ' ' + './lib/python' + platform.python_version_tuple()[0] + '.'+ platform.python_version_tuple()[1] + '/site-packages/selinux')
+  exec_command('cd ' + envName + '; ln -s ' + findings[choose] + ' ./lib/python' + pythonversion + '/site-packages/' + ntpath.basename(findings[choose]))
+
   exec_command('setsebool -P container_manage_cgroup on')
 
 ansibleConfig = [
-  '[default]',
-  'squash_actions = apk,apt,dnf,homebrew,package,pacman,pkgng,yum,zypper',
-  'roles_path    = roles',
-  'stdout_callback = yaml',
-  'bin_ansible_callbacks = True',
-  '[ssh_connection]',
-  'pipelining = True',
   '[galaxy]',
   'role_skeleton = ansible-skeleton/role',
   'role_skeleton_ignore = ^.git$,^.*/.git_keep$']
@@ -126,7 +112,7 @@ def installMolecule():
 
 def createAnsibleRole(role):
   infoBanner('Create Ansible Role')
-  print(exec_command('pwd;ansible-galaxy init ' + role))
+  exec_command('pwd;ansible-galaxy init ' + role)
   exec_command('mv ' + role + ' while_true_do.' + role)
   #execCommandVirtualenv( 'cd while_true_do.' + role + ';' + 'molecule init scenario -r while_true_do.' + role,'source ' + envName + '/bin/activate')
   #execCommandVirtualenv('mv while_true_do.'+ role + '/molecule.yml while_true_do.' + role + 'molecule/default/molecule.yml','source ' + envName + '/bin/activate')
@@ -134,23 +120,39 @@ def createAnsibleRole(role):
 def lastSteps(role):
   infoBanner('Set last Steps')
   print('Please execute following last steps')
-  print('Review and Modify all "TODO" steps')
+  print('Review and Modify all "TODO" steps for role: while_true_do.' + role)
   print('   ' + str(exec_command('grep -r "TODO" while_true_do.' + role)[0].decode("utf-8")))
+  print('###############################################################################')
+  print('Helpfull commands:')
+  print('cd while_true_do.' + role + '; molecule test')
 
 
-# linux_distribution need to replace until Python 3.5 see https://docs.python.org/2/library/platform.html#unix-platforms
-
-osVersion(platform.linux_distribution())
-checkRequirements()
-envName = prompGetEnvironment()
-exec_command('git clone https://github.com/while-true-do/ansible-skeleton.git')
-infoBanner("Erstelle Environment")
-exec_command('virtualenv ' + envName)
-exec_command('source ' + envName + "/bin/activate")
-execCommandVirtualenv('pip install ansible','source ' + envName + "/bin/activate")
-setSymlinkSeLinux()
-provideAnsibleConfig()
-installMolecule()
-role = input('Enter the name of the ansible role: ')
-createAnsibleRole(role)
-lastSteps(role)
+def cleanup():
+  infoBanner('Cleanup')
+  #if exist then
+  if os.path.isfile('./ansible.cfg'):
+    os.remove('./ansible.cfg')
+  if os.path.isdir('./ansible-skeleton'):
+    shutil.rmtree('./ansible-skeleton')
+  
+try:
+  osVersion(distro.id())
+  checkRequirements()
+  envName = prompGetEnvironment()
+  exec_command('git clone https://github.com/while-true-do/ansible-skeleton.git')
+  infoBanner("Erstelle Environment")
+  exec_command('virtualenv ' + envName)
+  exec_command('source ' + envName + "/bin/activate")
+  execCommandVirtualenv('pip install ansible','source ' + envName + "/bin/activate")
+  setSymlinkSeLinux()
+  provideAnsibleConfig()
+  installMolecule()
+  role = input('Enter the name of the ansible role: ')
+  createAnsibleRole(role)
+  lastSteps(role)
+  cleanup()
+except KeyboardInterrupt as identifier:
+  print('Abort by user')
+  cleanup()
+  # rollback
+  exit
