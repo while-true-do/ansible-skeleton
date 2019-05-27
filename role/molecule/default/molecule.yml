@@ -29,7 +29,7 @@ platforms:
   - name: ${name:-instance}
     image: ${image:-centos:7}
     command: /usr/sbin/init
-    volume_mounts:
+    volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
     tmpfs:
       - /run

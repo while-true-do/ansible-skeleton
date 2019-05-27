@@ -17,6 +17,13 @@ wtd_{{ role_name }}_package: ""
 # State can be present|latest|absent
 wtd_{{ role_name }}_package_state: "present"
 
+## User and Group Management
+# https://docs.ansible.com/ansible/latest/modules/user_module.html
+# https://docs.ansible.com/ansible/latest/modules/group_module.html
+wtd_{{ role_name }}_group: []
+# State can be present|absent
+wtd_{{ role_name }}_group_state: "present"
+
 ## Configuration Management
 # https://docs.ansible.com/ansible/latest/modules/template_module.html
 wtd_{{ role_name }}_conf: ""
@@ -40,3 +47,8 @@ wtd_{{ role_name }}_fw_service: ""
 wtd_{{ role_name }}_fw_state: "enabled"
 # Zone can be according to defined zones on your machine.
 wtd_{{ role_name }}_fw_zone: "public"
+
+## Host Management
+wtd_{{ role_name }}_reboot_enabled: true
+wtd_{{ role_name }}_reboot_msg: "System is going down to ..."
+wtd_{{ role_name }}_reboot_timeout: 3600
