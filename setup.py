@@ -94,7 +94,7 @@ def setSymlinkSeLinux():
   exec_command('cd ' + envName + '; ln -s /usr/lib64/python' + pythonversion + '/site-packages/selinux' +  ' ' + './lib/python' + platform.python_version_tuple()[0] + '.'+ platform.python_version_tuple()[1] + '/site-packages/selinux')
   exec_command('cd ' + envName + '; ln -s ' + findings[choose] + ' ./lib/python' + pythonversion + '/site-packages/' + ntpath.basename(findings[choose]))
 
-  exec_command('setsebool -P container_manage_cgroup on')
+  exec_command('sudo setsebool -P container_manage_cgroup on')
 
 ansibleConfig = [
   '[galaxy]',
@@ -145,7 +145,7 @@ try:
   infoBanner("Erstelle Environment")
   exec_command('virtualenv ' + envName)
   exec_command('source ' + envName + "/bin/activate")
-  execCommandVirtualenv('pip install ansible','source ' + envName + "/bin/activate")
+  execCommandVirtualenv('pip install ansible==2.7.10','source ' + envName + "/bin/activate")
   setSymlinkSeLinux()
   provideAnsibleConfig()
   installMolecule()
