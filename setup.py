@@ -116,8 +116,6 @@ def createAnsibleRole(role):
   infoBanner('Create Ansible Role')
   exec_command('pwd;ansible-galaxy init ' + role)
   exec_command('mv ' + role + ' while_true_do.' + role)
-  #execCommandVirtualenv( 'cd while_true_do.' + role + ';' + 'molecule init scenario -r while_true_do.' + role,'source ' + envName + '/bin/activate')
-  #execCommandVirtualenv('mv while_true_do.'+ role + '/molecule.yml while_true_do.' + role + 'molecule/default/molecule.yml','source ' + envName + '/bin/activate')
 
 def lastSteps(role):
   infoBanner('Set last Steps')
@@ -131,7 +129,6 @@ def lastSteps(role):
 
 def cleanup():
   infoBanner('Cleanup')
-  #if exist then
   if os.path.isfile('./ansible.cfg'):
     os.remove('./ansible.cfg')
   if os.path.isdir('./ansible-skeleton'):
@@ -156,5 +153,4 @@ try:
 except KeyboardInterrupt as identifier:
   print('Abort by user')
   cleanup()
-  # rollback
   exit

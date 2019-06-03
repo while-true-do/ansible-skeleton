@@ -56,6 +56,14 @@ git clone https://github.com/while-true-do/ansible-skeleton.git
 
 Before creating a new role, please read the below information very carefully.
 They will explain, how a new role should look like and which steps are needed.
+For an easy start you can execute `setup.py`. It will helps you to prepare the
+development environment.
+Short summary:
+- create python environment with virtualenv
+- set synlinks for selinux
+- install molecule into the environment
+- pull skeleton
+- create new role from skeleton
 
 ### Install Ansible
 
