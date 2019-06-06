@@ -16,6 +16,10 @@ contributors:
     role: Founder / Owner
     site: https://while-true-do.io
 
+  - name: cinux90
+    mail: c.hofmann90@gmx.de
+    role: Developer
+
 partners:
   - name: kudos.txt
     site: https://kudos-txt.io
