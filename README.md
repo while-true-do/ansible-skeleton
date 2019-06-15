@@ -152,7 +152,7 @@ This repository is not tested.
 Thank you so much for considering to contribute. We are very happy, when somebody
 is joining the hard work. Please fell free to open
 [Bugs, Feature Requests](https://github.com/while-true-do/ansible-skeleton/issues)
-or [Pull Requests](https://github.com/while-true-do/ansible-role-skeleton/pulls) after
+or [Pull Requests](https://github.com/while-true-do/ansible-skeleton/pulls) after
 reading the [Contribution Guideline](https://github.com/while-true-do/doc-library/blob/master/docs/CONTRIBUTING.md).
 
 See who has contributed already in the [kudos.txt](./kudos.txt).
